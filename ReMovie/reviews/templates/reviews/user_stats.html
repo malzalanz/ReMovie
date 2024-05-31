@@ -43,14 +43,25 @@
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
-            background-color: #f44336;
-            color: white;
             border: none;
             border-radius: 4px;
             margin-top: 20px;
         }
+        a.logout, button.logout {
+            background-color: #f44336; /* Kolor przycisku Logout */
+            color: white;
+        }
+        a:not(.logout), button:not(.logout) {
+            background-color: #0073e6; /* Kolor przycisków Movie List i Add Movie and Review */
+            color: white;
+        }
         a:hover, button:hover {
-            background-color: #d32f2f;
+            background-color: #005bb5; /* Ciemniejszy odcień niebieskiego */
+            color: white;
+        }
+        a.logout:hover, button.logout:hover {
+            background-color: #d32f2f; /* Ciemniejszy odcień czerwonego */
+            color: white;
         }
     </style>
 </head>
@@ -70,7 +81,7 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'logout' %}" class="logout">Logout</a>
     <a href="{% url 'movie_list' %}">Movie List</a>
     <a href="{% url 'add_movie_and_review' %}">Add Movie and Review</a>
 </body>

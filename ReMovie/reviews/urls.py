@@ -18,6 +18,7 @@ urlpatterns = [
     path('movie/<int:movie_id>/add_review/', add_review, name='add_review'),
     path('delete_review/<int:review_id>/', views.delete_review, name='delete_review'),
     path('delete_movie_with_reviews/<int:movie_id>/', views.delete_movie_with_reviews, name='delete_movie_with_reviews'),
+    path('edit_review/<int:review_id>/', views.edit_review, name='edit_review'),
 ]
 
 # Dodajmy obsługę dla plików multimedialnych (np. obrazy)

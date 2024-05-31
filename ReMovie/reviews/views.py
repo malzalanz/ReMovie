@@ -112,3 +112,16 @@ def delete_movie_with_reviews(request, movie_id):
     # Usuwamy film wraz z recenzjami
     movie.delete()
     return redirect('movie_list')
+
+@login_required
+def edit_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST, instance=review)
+        if review_form.is_valid():
+            review_form.save()
+            return redirect('movie_detail', movie_id=review.movie.id)
+    else:
+        review_form = ReviewForm(instance=review)
+    return render(request, 'edit_review.html', {'review_form': review_form, 'review': review})
+

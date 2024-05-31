@@ -1,47 +1,86 @@
-/* styles.css */
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+header {
+    background-color: #f44336;
+    color: white;
     padding: 20px;
 }
 
-h1 {
-    color: #343a40;
+header h1 {
+    margin: 0;
 }
 
-h2 {
-    color: #343a40;
-}
-
-p {
-    color: #6c757d;
-}
-
-ul {
+nav ul {
     list-style-type: none;
+    margin: 0;
     padding: 0;
 }
 
-li {
-    margin-bottom: 10px;
+nav ul li {
+    display: inline;
+    margin-right: 20px;
 }
 
-button {
-    background-color: #007bff;
+nav ul li a {
     color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+nav ul li a:hover {
+    color: #d32f2f;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    color: #f44336;
+}
+
+.service {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.service img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.testimonial {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+}
+
+blockquote {
+    font-style: italic;
+    margin: 10px 0;
+}
+
+cite {
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
