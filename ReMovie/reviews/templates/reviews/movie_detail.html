@@ -23,7 +23,7 @@
             left: 20px;
             font-size: 16px;
             text-decoration: none;
-            color: #000; /* Czarny kolor tekstu */
+            color: #000;
         }
         .container {
             max-width: 800px;
@@ -44,12 +44,12 @@
             color: gold;
         }
         .user-review {
-            margin-top: 20px; /* Dodaj margines na górze dla oddzielenia bloku */
+            margin-top: 20px;
         }
         img {
-            width: 300px;  /* Ustaw szerokość */
-            height: 450px; /* Ustaw wysokość */
-            object-fit: cover; /* Zachowaj proporcje obrazu */
+            width: 300px;
+            height: 450px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -63,17 +63,15 @@
         <p class="bold">Director:</p>
         <p>{{ movie.director }}</p>
         <p class="bold">Release Year:</p>
-        <p>{{ movie.release_date }}</p> <!-- Upewnij się, że pole jest wyświetlane bez filtru daty -->
+        <p>{{ movie.release_date }}</p>
         {% if movie.cover_image %}
         <img src="{{ movie.cover_image.url }}" alt="{{ movie.title }}" style="max-width: 100%; height: auto;">
         {% endif %}
         
-        <!-- Dodaj kilka linii pustych tutaj -->
         <br><br><br><br><br><br>
         
         <div class="user-review">
             {% if user_review %}
-                <!-- Jeśli użytkownik ma recenzję, wyświetl recenzję -->
                 <h2>Your Review</h2>
                 <p>Your Rating: 
                     {% for _ in "x"|ljust:user_review.rating %}
@@ -86,15 +84,13 @@
                     {% csrf_token %}
                     <button type="submit" style="padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Delete Review</button>
                 </form>
-                <!-- Dodaj przycisk do edycji recenzji -->
                 <a href="{% url 'edit_review' user_review.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #008CBA; color: white; border: none; border-radius: 4px; margin-left: 10px;">Edit Review</a>
             {% else %}
-                <!-- Jeśli użytkownik nie ma recenzji, wyświetl przycisk "Add Review" -->
+
                 <h2>Add Review</h2>
                 <a href="{% url 'add_review' movie.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Add Review</a>
             {% endif %}
 
-            <!-- Dodaj przycisk do usunięcia całego filmu z recenzjami -->
             <form action="{% url 'delete_movie_with_reviews' movie.id %}" method="post" style="display: inline-block; margin-left: 10px;">
                 {% csrf_token %}
                 <button type="submit" style="padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Delete Movie with Reviews</button>

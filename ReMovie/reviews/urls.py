@@ -12,7 +12,7 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('add_movie_and_review/', add_movie_and_review, name='add_movie_and_review'),
-    path('', user_stats, name='user_stats'),  # Domyślny widok, przekierowanie do user_stats
+    path('', user_stats, name='user_stats'),
     path('movies/', movie_list, name='movie_list'),
     path('movie/<int:movie_id>/', movie_detail, name='movie_detail'),
     path('movie/<int:movie_id>/add_review/', add_review, name='add_review'),
@@ -21,5 +21,4 @@ urlpatterns = [
     path('edit_review/<int:review_id>/', views.edit_review, name='edit_review'),
 ]
 
-# Dodajmy obsługę dla plików multimedialnych (np. obrazy)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -23,16 +23,16 @@
             left: 20px;
             font-size: 16px;
             text-decoration: none;
-            color: #000; /* Czarny kolor tekstu */
+            color: #000;
         }
         .container {
-            max-width: 1000px; /* Zwiększ szerokość, aby pomieścić trzy kafelki w rzędzie */
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
         .movie-tile {
             display: inline-block;
-            width: calc(30% - 20px); /* Ustaw 33.33% szerokości z odjęciem marginesów */
+            width: calc(30% - 20px);
             margin: 10px;
             padding: 10px;
             border: 1px solid #ccc;
@@ -47,15 +47,15 @@
         .movie-tile img {
             width: 100%;
             height: auto;
-            max-height: 450px; /* Ustaw maksymalną wysokość */
-            object-fit: cover; /* Dopasowanie obrazu do kontenera */
-            aspect-ratio: 2/3; /* Proporcja obrazu bardziej jak plakat filmowy */
+            max-height: 450px;
+            object-fit: cover;
+            aspect-ratio: 2/3;
         }
         .movie-tile:hover {
             background-color: #f0f0f0;
         }
         h1 {
-            text-align: center; /* Wyśrodkowanie napisu */
+            text-align: center;
         }
     </style>
 </head>
@@ -74,7 +74,7 @@
                     <p>No image available</p>
                     {% endif %}
                     <p>{{ movie.title }}</p>
-                    <p>{{ movie.release_date|date:"Y" }}</p> <!-- Dodaj wyświetlanie roku wydania filmu -->
+                    <p>{{ movie.release_date|date:"Y" }}</p>
                 </a>
             </div>            
             {% endfor %}

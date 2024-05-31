@@ -6,7 +6,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     director = models.CharField(max_length=255)
-    release_date = models.CharField(max_length=4)  # Zmiana pola na pole CharField dla roku
+    release_date = models.CharField(max_length=4) 
     cover_image = models.ImageField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):

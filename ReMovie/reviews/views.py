@@ -15,7 +15,6 @@ def movie_list(request):
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     
-    # Pobierz recenzję użytkownika dla danego filmu
     user_review = None
     if request.user.is_authenticated:
         user_review = Review.objects.filter(user=request.user, movie=movie).first()
@@ -59,19 +58,19 @@ def user_stats(request):
     stats.movies_watched = reviews.count()
     stats.save()
     
-    movies = Movie.objects.filter(review__user=user).distinct()  # Dodaj tę linię, aby uzyskać listę obejrzanych filmów przez użytkownika
+    movies = Movie.objects.filter(review__user=user).distinct()
     reviews = Review.objects.filter(user=request.user)
     return render(request, 'user_stats.html', {'stats': stats, 'user': user, 'movies': movies, 'reviews': reviews})
 
 @login_required
 def add_movie_and_review(request):
     if request.method == 'POST':
-        movie_form = MovieForm(request.POST, request.FILES)  # Dodaj request.FILES
+        movie_form = MovieForm(request.POST, request.FILES)
         review_form = ReviewForm(request.POST)
         if movie_form.is_valid() and review_form.is_valid():
             movie = movie_form.save(commit=False)
             if 'cover_image' in request.FILES:
-                print("Obraz jest przesyłany")  # Dodaj debugowanie
+                print("Obraz jest przesyłany")
                 movie.cover_image = request.FILES['cover_image']
             movie.save()
             review = review_form.save(commit=False)
@@ -109,7 +108,6 @@ def delete_review(request, review_id):
 @login_required
 def delete_movie_with_reviews(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
-    # Usuwamy film wraz z recenzjami
     movie.delete()
     return redirect('movie_list')
 
