@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Movie and Review</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0 auto; /* Wyśrodkowanie h1 */
+        }
+        .header .app-name {
+            font-size: 20px; /* Mniejszy rozmiar czcionki */
+            margin-left: 20px; /* Dodatkowy margines z lewej strony */
+        }
+        .header .back-to-stats {
+            margin-right: 20px; /* Dodatkowy margines z prawej strony */
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            margin-top: 80px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'user_stats' %}" class="back-to-stats" style="text-decoration: none; color: black;">Back to Stats</a>
+        <h1>Add Movie and Review</h1>
+        <span class="app-name" style="margin-right: 40px;">ReMovie</span> <!-- Nowy napis po prawej stronie -->
+    </div>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ movie_form.as_p }}
+            {{ review_form.as_p }}
+            <button type="submit">Submit</button>
+        </form>                
+    </div>    
+</body>
+</html>

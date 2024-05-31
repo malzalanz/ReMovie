@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Stats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .app-name {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        p {
+            margin-top: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        li strong {
+            font-size: 18px;
+        }
+        li p {
+            margin-top: 10px;
+        }
+        a, button {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        a:hover, button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <span class="app-name">ReMovie</span>
+    <h1>{{ user.username }}'s Stats</h1>
+    <p>Movies Watched: {{ stats.movies_watched }}</p>
+    <p>Average Rating: {{ stats.average_rating|floatformat:2 }}/10</p>
+
+    <h2>Watched Movies and Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.movie.title }}</strong> - Rating: {{ review.rating }}/10<br>
+                <p>{{ review.comment }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'movie_list' %}">Movie List</a>
+    <a href="{% url 'add_movie_and_review' %}">Add Movie and Review</a>
+</body>
+</html>

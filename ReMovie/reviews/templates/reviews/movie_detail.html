@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .app-name {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .back-to-movie-list {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #000; /* Czarny kolor tekstu */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        p {
+            margin-top: 10px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .stars {
+            color: gold;
+        }
+        .user-review {
+            margin-top: 20px; /* Dodaj margines na górze dla oddzielenia bloku */
+        }
+        img {
+            width: 300px;  /* Ustaw szerokość */
+            height: 450px; /* Ustaw wysokość */
+            object-fit: cover; /* Zachowaj proporcje obrazu */
+        }
+    </style>
+</head>
+<body>
+    <span class="app-name">ReMovie</span>
+    <a href="{% url 'movie_list' %}" class="back-to-movie-list">Back to Movie List</a>
+    <div class="container">
+        <h1>{{ movie.title }}</h1>
+        <p class="bold">Description:</p>
+        <p>{{ movie.description }}</p>
+        <p class="bold">Director:</p>
+        <p>{{ movie.director }}</p>
+        <p class="bold">Release Year:</p>
+        <p>{{ movie.release_date }}</p> <!-- Upewnij się, że pole jest wyświetlane bez filtru daty -->
+        {% if movie.cover_image %}
+        <img src="{{ movie.cover_image.url }}" alt="{{ movie.title }}" style="max-width: 100%; height: auto;">
+        {% endif %}
+        
+        <!-- Dodaj kilka linii pustych tutaj -->
+        <br><br><br><br><br><br>
+        
+        <div class="user-review">
+            {% if user_review %}
+                <!-- Jeśli użytkownik ma recenzję, wyświetl recenzję -->
+                <h2>Your Review</h2>
+                <p>Your Rating: 
+                    {% for _ in "x"|ljust:user_review.rating %}
+                        <span class="stars">★</span>
+                    {% endfor %}
+                    {{ user_review.rating }}/10
+                </p>
+                <p>Your Comment: {{ user_review.comment }}</p>
+                <form action="{% url 'delete_review' user_review.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Delete Review</button>
+                </form>
+                <!-- Dodaj przycisk do usunięcia całego filmu z recenzjami -->
+                <form action="{% url 'delete_movie_with_reviews' movie.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px; margin-top: 10px;">Delete Movie with Reviews</button>
+                </form>
+            {% else %}
+                <!-- Jeśli użytkownik nie ma recenzji, wyświetl przycisk "Add Review" -->
+                <h2>Add Review</h2>
+                <a href="{% url 'add_review' movie.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Add Review</a>
+            {% endif %}
+        </div>                
+    </div>
+</body>
+</html>

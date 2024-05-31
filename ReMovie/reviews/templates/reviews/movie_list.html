@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .app-name {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .back-to-stats {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #000; /* Czarny kolor tekstu */
+        }
+        .container {
+            max-width: 1000px; /* Zwiększ szerokość, aby pomieścić trzy kafelki w rzędzie */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .movie-tile {
+            display: inline-block;
+            width: calc(30% - 20px); /* Ustaw 33.33% szerokości z odjęciem marginesów */
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .movie-tile a {
+            text-decoration: none;
+            color: #333;
+        }
+        .movie-tile img {
+            width: 100%;
+            height: auto;
+            max-height: 450px; /* Ustaw maksymalną wysokość */
+            object-fit: cover; /* Dopasowanie obrazu do kontenera */
+            aspect-ratio: 2/3; /* Proporcja obrazu bardziej jak plakat filmowy */
+        }
+        .movie-tile:hover {
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center; /* Wyśrodkowanie napisu */
+        }
+    </style>
+</head>
+<body>
+    <span class="app-name">ReMovie</span>
+    <a href="{% url 'user_stats' %}" class="back-to-stats">Back to Stats</a>
+    <div class="container">
+        <h1>Movie List</h1>
+        <div class="movie-tiles">
+            {% for movie in movies %}
+            <div class="movie-tile">
+                <a href="{% url 'movie_detail' movie.id %}">
+                    {% if movie.cover_image %}
+                    <img src="{{ movie.cover_image.url }}" alt="{{ movie.title }}">
+                    {% else %}
+                    <p>No image available</p>
+                    {% endif %}
+                    <p>{{ movie.title }}</p>
+                    <p>{{ movie.release_date|date:"Y" }}</p> <!-- Dodaj wyświetlanie roku wydania filmu -->
+                </a>
+            </div>            
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
