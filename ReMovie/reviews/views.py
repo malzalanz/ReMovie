@@ -19,7 +19,13 @@ def movie_detail(request, movie_id):
     if request.user.is_authenticated:
         user_review = Review.objects.filter(user=request.user, movie=movie).first()
     
-    return render(request, 'movie_detail.html', {'movie': movie, 'user_review': user_review})
+    reviews = Review.objects.filter(movie=movie).select_related('user')
+    
+    return render(request, 'movie_detail.html', {
+        'movie': movie,
+        'user_review': user_review,
+        'reviews': reviews
+    })
 
 class RegisterView(FormView):
     template_name = 'registration/register.html'

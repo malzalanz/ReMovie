@@ -46,6 +46,10 @@
         .user-review {
             margin-top: 20px;
         }
+        .review {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
         img {
             width: 300px;
             height: 450px;
@@ -86,7 +90,6 @@
                 </form>
                 <a href="{% url 'edit_review' user_review.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #008CBA; color: white; border: none; border-radius: 4px; margin-left: 10px;">Edit Review</a>
             {% else %}
-
                 <h2>Add Review</h2>
                 <a href="{% url 'add_review' movie.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Add Review</a>
             {% endif %}
@@ -95,7 +98,22 @@
                 {% csrf_token %}
                 <button type="submit" style="padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Delete Movie with Reviews</button>
             </form>
-        </div>                
+        </div>
+
+        <h3>All Reviews</h3>
+        {% for review in reviews %}
+            <div class="review">
+                <p><strong>{{ review.user.username }}:</strong> Rating: 
+                    {% for _ in "x"|ljust:review.rating %}
+                        <span class="stars">★</span>
+                    {% endfor %}
+                    {{ review.rating }}/10
+                </p>
+                <p>{{ review.comment }}</p>
+            </div>
+        {% empty %}
+            <p>No reviews yet.</p>
+        {% endfor %}
     </div>
 </body>
 </html>
