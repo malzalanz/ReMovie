@@ -1,67 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ movie.title }}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        .app-name {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .back-to-movie-list {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 16px;
-            text-decoration: none;
-            color: #000;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            margin-top: 0;
-        }
-        p {
-            margin-top: 10px;
-        }
-        .bold {
-            font-weight: bold;
-        }
-        .stars {
-            color: gold;
-        }
-        .user-review {
-            margin-top: 20px;
-        }
-        .review {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-        img {
+        .movie-cover {
             width: 300px;
-            height: 450px;
-            object-fit: cover;
+            height: 450px; 
+            object-fit: cover; 
         }
     </style>
 </head>
 <body>
-    <span class="app-name">ReMovie</span>
-    <a href="{% url 'movie_list' %}" class="back-to-movie-list">Back to Movie List</a>
-    <div class="container">
+    <div class="header">
+        <a href="{% url 'movie_list' %}" class="back-to-stats">Back to Movie List</a>
         <h1>{{ movie.title }}</h1>
+        <span class="app-name">ReMovie</span>
+    </div>
+    <div class="container">
         <p class="bold">Description:</p>
         <p>{{ movie.description }}</p>
         <p class="bold">Director:</p>
@@ -69,10 +29,8 @@
         <p class="bold">Release Year:</p>
         <p>{{ movie.release_date }}</p>
         {% if movie.cover_image %}
-        <img src="{{ movie.cover_image.url }}" alt="{{ movie.title }}" style="max-width: 100%; height: auto;">
+        <img src="{{ movie.cover_image.url }}" alt="{{ movie.title }}" class="movie-cover">
         {% endif %}
-        
-        <br><br><br><br><br><br>
         
         <div class="user-review">
             {% if user_review %}
@@ -86,17 +44,17 @@
                 <p>Your Comment: {{ user_review.comment }}</p>
                 <form action="{% url 'delete_review' user_review.id %}" method="post" style="display: inline-block;">
                     {% csrf_token %}
-                    <button type="submit" style="padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Delete Review</button>
+                    <button type="submit" class="btn btn-danger">Delete Review</button>
                 </form>
-                <a href="{% url 'edit_review' user_review.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #008CBA; color: white; border: none; border-radius: 4px; margin-left: 10px;">Edit Review</a>
+                <a href="{% url 'edit_review' user_review.id %}" class="btn btn-primary">Edit Review</a>
             {% else %}
                 <h2>Add Review</h2>
-                <a href="{% url 'add_review' movie.id %}" style="display: inline-block; padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Add Review</a>
+                <a href="{% url 'add_review' movie.id %}" class="btn btn-danger">Add Review</a>
             {% endif %}
 
             <form action="{% url 'delete_movie_with_reviews' movie.id %}" method="post" style="display: inline-block; margin-left: 10px;">
                 {% csrf_token %}
-                <button type="submit" style="padding: 8px 16px; font-size: 16px; cursor: pointer; text-decoration: none; background-color: #f44336; color: white; border: none; border-radius: 4px;">Delete Movie with Reviews</button>
+                <button type="submit" class="btn btn-danger">Delete Movie with Reviews</button>
             </form>
         </div>
 

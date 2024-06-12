@@ -1,88 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User Stats</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .app-name {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-        p {
-            margin-top: 10px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-        }
-        li strong {
-            font-size: 18px;
-        }
-        li p {
-            margin-top: 10px;
-        }
-        a, button {
-            display: inline-block;
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-        a.logout, button.logout {
-            background-color: #f44336;
-            color: white;
-        }
-        a:not(.logout), button:not(.logout) {
-            background-color: #0073e6;
-            color: white;
-        }
-        a:hover, button:hover {
-            background-color: #005bb5;
-            color: white;
-        }
-        a.logout:hover, button.logout:hover {
-            background-color: #d32f2f;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <span class="app-name">ReMovie</span>
-    <h1>{{ user.username }}'s Stats</h1>
-    <p>Movies Watched: {{ stats.movies_watched }}</p>
-    <p>Average Rating: {{ stats.average_rating|floatformat:2 }}/10</p>
-
-    <h2>Watched Movies and Reviews</h2>
-    <ul>
-        {% for review in reviews %}
-            <li>
-                <strong>{{ review.movie.title }}</strong> - Rating: {{ review.rating }}/10<br>
-                <p>{{ review.comment }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <a href="{% url 'logout' %}" class="logout">Logout</a>
-    <a href="{% url 'movie_list' %}">Movie List</a>
-    <a href="{% url 'add_movie_and_review' %}">Add Movie and Review</a>
+    <div class="header">
+        <a href="{% url 'movie_list' %}" class="back-to-stats">Movie List</a>
+        <h1>{{ user.username }}'s Stats</h1>
+        <span class="app-name">ReMovie</span>
+    </div>
+    <div class="container">
+        <!-- Statystyki użytkownika -->
+        <div class="user-stats">
+            <h2>User Stats</h2>
+            <p>Movies Watched: {{ stats.movies_watched }}</p>
+            <p>Average Rating: {{ stats.average_rating|floatformat:2 }}/10</p>
+            <a href="{% url 'logout' %}" class="logout">Logout</a>
+        </div>
+        <!-- Ostatnio obejrzane filmy z komentarzami -->
+        <div class="watched-movies">
+            <h2>Watched Movies and Reviews</h2>
+            <ul>
+                {% for review in reviews %}
+                    <li>
+                        <strong>{{ review.movie.title }}</strong> - Rating: {{ review.rating }}/10<br>
+                        <p>{{ review.comment }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'add_movie_and_review' %}">Add Movie and Review</a>
+        </div>
+    </div>
 </body>
 </html>

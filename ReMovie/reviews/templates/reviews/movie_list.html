@@ -1,69 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie List</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        .app-name {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .back-to-stats {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 16px;
-            text-decoration: none;
-            color: #000;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .movie-tile {
-            display: inline-block;
-            width: calc(30% - 20px);
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            vertical-align: top;
-        }
-        .movie-tile a {
-            text-decoration: none;
-            color: #333;
-        }
-        .movie-tile img {
-            width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: cover;
-            aspect-ratio: 2/3;
-        }
-        .movie-tile:hover {
-            background-color: #f0f0f0;
-        }
-        h1 {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <span class="app-name">ReMovie</span>
-    <a href="{% url 'user_stats' %}" class="back-to-stats">Back to Stats</a>
-    <div class="container">
+    <div class="header">
+        <a href="{% url 'user_stats' %}" class="back-to-stats">Back to Stats</a>
         <h1>Movie List</h1>
+        <span class="app-name">ReMovie</span>
+    </div>
+    <div class="container">
         <div class="movie-tiles">
             {% for movie in movies %}
             <div class="movie-tile">

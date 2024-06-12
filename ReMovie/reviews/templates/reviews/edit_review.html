@@ -1,16 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Review</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Edit Review</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ review_form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
+    <div class="header">
+        <a href="{% url 'movie_detail' review.movie.id %}" class="back-to-stats">Back to Movie</a>
+        <h1>Edit Review</h1>
+        <span class="app-name">ReMovie</span>
+    </div>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
 </body>
 </html>

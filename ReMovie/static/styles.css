@@ -1,0 +1,206 @@
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+/* Header styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    margin-right: 0px;
+}
+
+.header .app-name {
+    font-size: 26px;
+    color: #ff9800;
+    font-family: 'Cinzel', serif;
+    position: relative;
+    margin-right: 40px; /* Increased margin from the right */
+}
+
+.header .back-to-stats, .header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    line-height: 20px;
+    margin-top: 0px;
+}
+
+/* Container styles */
+.container {
+    max-width: 75%;
+    width: 100%;
+    margin: 150px auto 0px; /* Added margin from the top header */
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #1f1f1f;
+}
+
+/* Input and button styles */
+input[type="text"],
+textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Button styling */
+button, .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 10px 0; /* Increased margin for better spacing */
+}
+
+/* Default button style */
+button.btn-primary, .btn-primary {
+    background-color: #ff9800;
+    color: white;
+}
+
+button.btn-primary:hover, .btn-primary:hover {
+    background-color: #e68900; /* Darker shade of orange */
+}
+
+/* Danger button style */
+button.btn-danger, .btn-danger {
+    background-color: #f44336;
+    color: white;
+}
+
+button.btn-danger:hover, .btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+/* User stats container */
+.user-stats {
+    float: left;
+    width: 45%; /* Changed width of the user stats container */
+}
+
+/* Watched movies container */
+.watched-movies {
+    float: right;
+    width: 45%; /* Changed width of the watched movies container */
+}
+
+/* Clearfix for container */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Links and buttons */
+a, button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+a.logout, button.logout {
+    background-color: #f44336;
+    color: white;
+}
+
+a:not(.logout), button:not(.logout) {
+    background-color: #ff9800;
+    color: white;
+}
+
+a:not(.logout):hover, button:not(.logout):hover {
+    background-color: #e68900; /* Darker shade of orange */
+    color: white;
+}
+
+a.logout:hover, button.logout:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+/* Movie detail styles */
+.user-review {
+    margin-top: 20px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+/* Movie list styles */
+.movie-tiles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.movie-tile {
+    flex: 0 0 calc(30% - 20px); /* 30% of the container width with spacing */
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.movie-tile a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.movie-tile img {
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    aspect-ratio: 2/3;
+}
+
+.movie-tile:hover {
+    background-color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
